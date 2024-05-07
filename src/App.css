@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FEDF8B;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6;
+}
+
+.app {
+    width: 90%;
+    max-width: 1400px;
+    background-color: white;
+    border-radius: 1em;
+    border: 3px solid magenta;
+    margin: 2em 0;
+}

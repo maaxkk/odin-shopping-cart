@@ -1,0 +1,67 @@
+.candle {
+}
+
+.candleImg {
+    max-width: 100%;
+    display: block;
+}
+
+.titleWrapper {
+    background: #F3F3F3;
+    text-align: center;
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.title {
+    margin-bottom: 0;
+}
+
+.category, .price {
+    margin: 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.buyWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btnAdd {
+    background: white;
+    color: #FF9499;
+    border-radius: 50px;
+    padding: 0.6em 1.5em;
+    border: 1px solid #FF9499;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 100ms linear;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnAdd:hover {
+     background-color: #F3F3F3;
+ }
+
+
+.itemCounter {
+    margin-left: 0.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF9499;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    width: 24px;
+    height: 24px;
+}
+
+
+

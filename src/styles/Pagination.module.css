@@ -1,0 +1,21 @@
+.pageWrapper {
+    padding: 2em;
+}
+
+.page {
+    display: inline-block;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    line-height: 42px;
+    color: #FF9499;
+    border-radius: 30px;
+    border: 1px solid #FF9499;
+    cursor: pointer;
+    margin-right: 1em;
+}
+
+.pageCurrent {
+    background-color: #FF9499;
+    color: white;
+}

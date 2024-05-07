@@ -1,0 +1,10 @@
+.mainContent {
+    padding: 0 2em 2em 2em;
+}
+
+.candlesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 350px));
+    justify-content: space-between;
+    grid-row-gap: 2em;
+}

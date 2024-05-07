@@ -1,0 +1,39 @@
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0 2em 2em 2em;
+    border-bottom: 1px solid #F5f5f5;
+}
+
+.logoWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2em;
+    line-height: 1.4;
+}
+
+.inputWrapper {
+    flex-grow: 1;
+}
+
+.cartButton {
+    margin-left: 2em;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+}
+
+.title {
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    margin-top: 0;
+    opacity: 0.6;
+}

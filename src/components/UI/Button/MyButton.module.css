@@ -1,0 +1,25 @@
+.myButton {
+    background-color: #FC9497;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    padding: 0.4em 1em;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.price {
+    margin-right: 0.25em;
+}
+
+.cartIcon {
+    display: flex;
+    align-items: center;
+    margin-left: 0.25em;
+}
+
+.cartIcon > svg {
+    margin-right: 0.25em;
+}
