@@ -1,6 +1,7 @@
 import React from 'react';
 import MyRadio from "./UI/Radio/MyRadio.jsx";
 import classes from '../styles/CandlesFilter.module.css'
+import MySelect from "./UI/Select/MySelect.jsx";
 
 function CandlesFilter({categories, filter, setFilter}) {
 
@@ -8,6 +9,10 @@ function CandlesFilter({categories, filter, setFilter}) {
         setFilter(prevFilter => (
             {...prevFilter, category: e.target.value}
         ))
+    }
+
+    function handleSelectChange(e) {
+        setFilter(prevFilter => ({...prevFilter, sort: e.target.value}))
     }
 
     return (
@@ -21,6 +26,15 @@ function CandlesFilter({categories, filter, setFilter}) {
                          checked={filter.category === category}
                          type={'radio'}/>
             )}
+            <MySelect value={filter.sort}
+                      onChange={handleSelectChange}
+                      options={[
+                          {value: 'priceDESC', body: 'sort by price(DESC)'},
+                          {value: 'priceASC', body: 'sort by price(ASC)'},
+                          {value: 'alphabetDESC', body: 'sort alphabetically(DESC)'},
+                          {value: 'alphabetASC', body: 'sort alphabetically(ASC)'},
+                      ]}
+            />
         </div>
     );
 }

@@ -30,7 +30,7 @@ function Candles() {
         }
     })
 
-    console.log(page)
+    console.log(filter)
 
     return (
         <div>

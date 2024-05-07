@@ -5,21 +5,21 @@ export default [
         title: 'Vanilla dream candle',
         category: ['All', 'Classics'],
         src: candleImage,
-        price: 20,
+        price: 10,
         id: Math.random()
     },
     {
         title: 'Rose Garden Candle',
         category: ['All', 'Classics'],
         src: candleImage,
-        price: 20,
+        price: 15,
         id: Math.random()
     },
     {
         title: 'Lavender Fields Candle',
         category: ['All', 'Classics'],
         src: candleImage,
-        price: 20,
+        price: 25,
         id: Math.random()
     },
     {
@@ -40,14 +40,14 @@ export default [
         title: 'Coconut Paradise Candle',
         category: ['All', 'Therapy'],
         src: candleImage,
-        price: 20,
+        price: 12,
         id: Math.random()
     },
     {
         title: 'Pink Aroma Candle',
         category: ['All', 'Aroma'],
         src: candleImage,
-        price: 20,
+        price: 30,
         id: Math.random()
     },
 ]
