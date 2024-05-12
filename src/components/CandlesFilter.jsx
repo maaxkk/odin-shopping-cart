@@ -17,22 +17,24 @@ function CandlesFilter({categories, filter, setFilter}) {
 
     return (
         <div className={classes.filter}>
-            {categories.map(category =>
-                <MyRadio key={category}
-                         name={'category'}
-                         category={category}
-                         value={category}
-                         onChange={handleChange}
-                         checked={filter.category === category}
-                         type={'radio'}/>
-            )}
+            <div className={classes.categories}>
+                {categories.map(category =>
+                    <MyRadio key={category}
+                             name={'category'}
+                             category={category}
+                             value={category}
+                             onChange={handleChange}
+                             checked={filter.category === category}
+                             type={'radio'}/>
+                )}
+            </div>
             <MySelect value={filter.sort}
                       onChange={handleSelectChange}
                       options={[
-                          {value: 'priceDESC', body: 'sort by price(DESC)'},
-                          {value: 'priceASC', body: 'sort by price(ASC)'},
-                          {value: 'alphabetDESC', body: 'sort alphabetically(DESC)'},
-                          {value: 'alphabetASC', body: 'sort alphabetically(ASC)'},
+                          {value: 'priceDESC', body: 'price(DESC)'},
+                          {value: 'priceASC', body: 'price(ASC)'},
+                          {value: 'alphabetDESC', body: 'alphabetically(DESC)'},
+                          {value: 'alphabetASC', body: 'alphabetically(ASC)'},
                       ]}
             />
         </div>

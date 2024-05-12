@@ -4,7 +4,7 @@
 
 .candlesList {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 350px));
-    justify-content: space-between;
-    grid-row-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 350px));
+    justify-content: space-evenly;
+    grid-gap: 2em;
 }

@@ -7,7 +7,7 @@ import {CartContext} from "../components/AppRouter.jsx";
 import CartItem from "../components/UI/CartItem/CartItem.jsx";
 import {FaShoppingCart} from "react-icons/fa";
 
-function ShoppingCart(props) {
+function ShoppingCart() {
     const {cart, addItem, removeItem, removeWholeItem, setCart} = useContext(CartContext)
     const itemsInCart = data.filter(item => {
         if (cart.itemsId.hasOwnProperty(item.id)) return item

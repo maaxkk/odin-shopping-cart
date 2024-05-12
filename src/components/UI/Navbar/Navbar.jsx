@@ -27,12 +27,12 @@ function Navbar({filter, setFilter}) {
                 </div>
             </Link>
             <div className={classes.inputWrapper}>
-                <MyInput onChange={handleSearchCandle}
+                <MyInput onChange={handleSearchCandle} data-testid={'input-el'}
                          placeholder={'Search candles...'}/>
             </div>
             <div className={classes.cartButton}>
                 <Link to={'/cart'}>
-                    <MyButton price={cart.totalPrice} count={cart.count}/>
+                    <MyButton data-testid={'mybutton-el'} price={cart.totalPrice} count={cart.count}/>
                 </Link>
             </div>
         </header>

@@ -1,3 +1,15 @@
-### Attempting to copy the functionality of the website that is done on this course(https://www.youtube.com/watch?v=_UywBskWJ7Q&list=PL0FGkDGJQjJG9eI85xM1_iLIf6BcEdaNl) before I start this course myself
+## Easy:
+- [ ] Fetch candles from mockapi
+- [ ] Add query params feature
+- [ ] Add skeleton
+- [ ] Add empty card component
 
+
+## Medium:
+- [ ] Rewrite context with redux
+- [ ] Add tests
+
+## Hard:
+- [ ] Write small backend for website
+- [ ] Rewrite with TS
 
