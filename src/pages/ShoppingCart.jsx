@@ -6,14 +6,18 @@ import {CartContext} from "../components/AppRouter.jsx";
 
 import CartItem from "../components/UI/CartItem/CartItem.jsx";
 import {FaShoppingCart} from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
+import {clearCart} from "../redux/slices/cartSlice.js";
 
 function ShoppingCart() {
-    const {cart, addItem, removeItem, removeWholeItem, setCart} = useContext(CartContext)
+    const cart = useSelector(state => state.cart);
+    const dispatch = useDispatch();
+
     const itemsInCart = data.filter(item => {
         if (cart.itemsId.hasOwnProperty(item.id)) return item
     })
-    function clearCart() {
-        setCart(prevCart => ({count: 0, totalPrice: 0, itemsId: {}}))
+    function clearCartHandler() {
+        dispatch(clearCart())
     }
 
     return (
@@ -24,7 +28,7 @@ function ShoppingCart() {
                     <h2 className={classes.title}>
                         <FaShoppingCart/>
                         Shopping cart</h2>
-                    <p className={classes.clear} onClick={clearCart}>
+                    <p className={classes.clear} onClick={clearCartHandler}>
                         <i className={'fa fa-trash'}>
                         </i>Clear cart
                     </p>
@@ -35,9 +39,7 @@ function ShoppingCart() {
                                   title={item.title}
                                   count={cart.itemsId[item.id]}
                                   price={item.price}
-                                  addItem={() => addItem(item.price, item.id)}
-                                  removeItem={() => removeItem(item.price, item.id)}
-                                  removeWholeItem={() => removeWholeItem(item.price, item.id)}
+                                  id={item.id}
                         />
                     )}
                 </div>

@@ -1,13 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import candleLogo from '../../../assets/candle.png'
 import classes from './Navbar.module.css'
 import MyInput from "../Input/MyInput.jsx";
 import MyButton from "../Button/MyButton.jsx";
 import {Link} from "react-router-dom";
-import {CartContext} from "../../AppRouter.jsx";
+import {useSelector} from "react-redux";
 
 function Navbar({filter, setFilter}) {
-    const {cart, addItem} = useContext(CartContext)
+
+    const cart = useSelector(state => state.cart)
 
     function handleSearchCandle(e) {
         setFilter(prevFilter => (

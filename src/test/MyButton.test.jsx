@@ -1,6 +1,7 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import MyButton from "../components/UI/Button/MyButton.jsx";
 import {useState} from "react";
+import {Provider} from "react-redux";
 
 
 function CartItems() {
@@ -15,8 +16,8 @@ function CartItems() {
 }
 
 
-describe('MyInput test', () => {
-    test('Input works correctly', async () => {
+describe('MyButton test', () => {
+    test('My button works correctly', async () => {
         render(
             <>
                 <CartItems/>

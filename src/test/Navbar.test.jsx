@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import Navbar from "../components/UI/Navbar/Navbar.jsx";
-import {CartContext} from "../components/AppRouter.jsx";
 import {MemoryRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 const cart = {
     count: 0,
@@ -11,13 +11,15 @@ const cart = {
 
 const setFilter = (e) => 0
 
+import {store} from "../redux/store.js";
+
 describe('Navbar test', () => {
     test('Input works correctly', async () => {
         render(
             <MemoryRouter>
-                <CartContext.Provider value={{ cart }}>
+                <Provider store={store}>
                     <Navbar setFilter={setFilter}/>
-                </CartContext.Provider>
+                </Provider>
             </MemoryRouter>
         );
 
