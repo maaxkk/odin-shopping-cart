@@ -2,17 +2,22 @@ import React from 'react';
 import MyRadio from "./UI/Radio/MyRadio.jsx";
 import classes from '../styles/CandlesFilter.module.css'
 import MySelect from "./UI/Select/MySelect.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {setCategory, setSort} from "../redux/slices/filterSlice.js";
 
-function CandlesFilter({categories, filter, setFilter}) {
+function CandlesFilter({categories}) {
+
+    const dispatch = useDispatch();
+    const filter = useSelector(state => state.filter)
 
     function handleChange(e) {
-        setFilter(prevFilter => (
-            {...prevFilter, category: e.target.value}
-        ))
+        const value = e.target.value;
+        dispatch(setCategory({value}))
     }
 
     function handleSelectChange(e) {
-        setFilter(prevFilter => ({...prevFilter, sort: e.target.value}))
+        let value = e.target.value
+        dispatch(setSort({value}))
     }
 
     return (

@@ -11,7 +11,7 @@ const Skeleton = (props) => (
         foregroundColor="#ecebeb"
         {...props}
     >
-        <rect x="0" y="463" rx="10" ry="10" width="350" height="55" />
+        <rect data-testid={'imgSkeleton'} x="0" y="463" rx="10" ry="10" width="350" height="55" />
         <rect x="39" y="463" rx="0" ry="0" width="0" height="1" />
         <rect x="0" y="540" rx="10" ry="10" width="95" height="30" />
         <rect x="0" y="2" rx="0" ry="0" width="350" height="440" />

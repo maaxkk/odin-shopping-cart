@@ -9,16 +9,14 @@ const cart = {
     itemsId: {},
 }
 
-const setFilter = (e) => 0
-
 import {store} from "../redux/store.js";
 
 describe('Navbar test', () => {
-    test('Input works correctly', async () => {
+    test('Input in navbar works correctly', async () => {
         render(
             <MemoryRouter>
                 <Provider store={store}>
-                    <Navbar setFilter={setFilter}/>
+                    <Navbar/>
                 </Provider>
             </MemoryRouter>
         );

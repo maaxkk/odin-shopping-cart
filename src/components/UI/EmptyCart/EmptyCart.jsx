@@ -8,12 +8,12 @@ function CartEmpty() {
     return (
         <>
             <div className={classes.cartContent}>
-                <h2>Cart is empty <icon>😕</icon></h2>
+                <h2>Cart is empty 😕</h2>
                 <p>
-                    Most likely, you haven't ordered a pizza yet.<br/>
-                    To order a pizza, go to the main page.
+                    Most likely, you haven't ordered a candles yet.<br/>
+                    To order a candle, go to the main page.
                 </p>
-                <img className={classes.emptyCartImg} src={emptyCard} alt="Empty cart"/>
+                <img data-testid={'emptyCart-el'} className={classes.emptyCartImg} src={emptyCard} alt="Empty cart"/>
                 <Link to="/" className="button button--black">
                     <button className={classes.btnBack}>Back</button>
                 </Link>

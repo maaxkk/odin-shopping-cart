@@ -1,27 +1,24 @@
 import React from 'react';
 import CandleItem from "./CandleItem.jsx";
 import classes from "../styles/CandlesList.module.css";
-import {useCandles} from "../hooks/useCandles.js";
+import {useCandles, useSortedCandles} from "../hooks/useCandles.js";
+import {useSelector} from "react-redux";
 
-function CandlesList({candles, filter, page, limit, isLoading}) {
-    let filteredCandles;
-    if (!isLoading) {
-        filteredCandles = useCandles(candles, filter.category, filter.query, page, filter.sort, limit)
-    }
+function CandlesList({candles, limit}) {
+    const filter = useSelector(state => state.filter)
+    let filteredCandles = useCandles(candles, filter.category, filter.query, filter.currentPage, filter.sort, limit)
     return (
         <div className={classes.mainContent}>
             <h2 className={''}>All candles</h2>
             <div className={classes.candlesList}>
-                {
-                    isLoading ? candles :
-                        filteredCandles ?
-                            filteredCandles.map(candle =>
-                                <CandleItem key={candle.id} {...candle}/>
-                            )
-                            :
-                            candles.map(candle =>
-                                <CandleItem key={candle.id} {...candle}/>
-                            )
+                {filteredCandles ?
+                    filteredCandles.map(candle =>
+                        <CandleItem key={candle.id} {...candle}/>
+                    )
+                    :
+                    candles.map(candle =>
+                        <CandleItem key={candle.id} {...candle}/>
+                    )
                 }
             </div>
         </div>

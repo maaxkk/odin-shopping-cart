@@ -4,16 +4,16 @@ import classes from './Navbar.module.css'
 import MyInput from "../Input/MyInput.jsx";
 import MyButton from "../Button/MyButton.jsx";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setQuery} from "../../../redux/slices/filterSlice.js";
 
-function Navbar({filter, setFilter}) {
+function Navbar() {
 
     const cart = useSelector(state => state.cart)
-
+    const dispatch = useDispatch();
     function handleSearchCandle(e) {
-        setFilter(prevFilter => (
-            {...prevFilter, query: e.target.value}
-        ))
+        let value = e.target.value;
+        dispatch(setQuery({value}))
     }
 
     return (

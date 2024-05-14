@@ -1,8 +1,9 @@
 ## Easy:
 - [x] Fetch candles from mockapi
-- [ ] Add query params feature
+- [x] Add query params feature
 - [x] Add skeleton
 - [x] Add empty card component
+- [x] Not found page
 
 
 ## Medium:

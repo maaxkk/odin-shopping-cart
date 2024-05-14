@@ -23,7 +23,6 @@ function ShoppingCart() {
 
     return (
         <>
-            <Navbar/>
             <div className={classes.mainContent}>
                 {cart.count === 0 && <EmptyCart/>}
                 {cart.count > 0 &&
