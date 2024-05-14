@@ -19,8 +19,10 @@ const cartSlice = createSlice({
         },
         removeItem(state, action) {
             let itemId = action.payload.id;
-            state.itemsId[itemId] = state.itemsId[itemId] > 1
-                ? state.itemsId[itemId] - 1 : delete state.itemsId[itemId];
+            state.itemsId[itemId]--;
+            if (state.itemsId[itemId] === 0) {
+                delete state.itemsId[itemId];
+            }
             state.count--;
             state.totalPrice -= action.payload.price;
         },

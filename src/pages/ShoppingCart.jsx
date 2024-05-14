@@ -8,6 +8,7 @@ import CartItem from "../components/UI/CartItem/CartItem.jsx";
 import {FaShoppingCart} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
 import {clearCart} from "../redux/slices/cartSlice.js";
+import EmptyCart from "../components/UI/EmptyCart/EmptyCart.jsx";
 
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
@@ -24,7 +25,9 @@ function ShoppingCart() {
         <>
             <Navbar/>
             <div className={classes.mainContent}>
-                <div className={classes.cartTitle}>
+                {cart.count === 0 && <EmptyCart/>}
+                {cart.count > 0 &&
+                    <div className={classes.cartTitle}>
                     <h2 className={classes.title}>
                         <FaShoppingCart/>
                         Shopping cart</h2>
@@ -33,6 +36,7 @@ function ShoppingCart() {
                         </i>Clear cart
                     </p>
                 </div>
+                }
                 <div className={classes.candlesList}>
                     {itemsInCart.map(item =>
                         <CartItem key={item.id}

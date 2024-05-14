@@ -5,6 +5,7 @@ import CandlesList from "../components/CandlesList.jsx";
 import {getPageCount} from "../utils/pages.js";
 import Pagination from "../components/pagination/Pagination.jsx";
 import CandlesService from "../API/PostService.js";
+import Skeleton from "../components/UI/Skeleton/Skeleton.jsx";
 
 
 function Candles() {
@@ -17,10 +18,15 @@ function Candles() {
         query: '',
         sort: '',
     })
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true)
         CandlesService.getAll()
-            .then(candleArr => setCandles(candleArr))
+            .then(candleArr => {
+                setCandles(candleArr)
+                setIsLoading(false);
+            })
     }, [])
 
     useEffect(() => {
@@ -35,11 +41,14 @@ function Candles() {
         }
     })
 
+    const skeletonCandles = [1,2,3].map(skeleton => (<Skeleton/>))
+    const passedCandlesList = isLoading ? skeletonCandles : candles;
+
     return (
         <div>
             <Navbar filter={filter} setFilter={setFilter}/>
             <CandlesFilter categories={categories} filter={filter} setFilter={setFilter}/>
-            <CandlesList candles={candles} filter={filter} page={page} limit={limit}/>
+            <CandlesList candles={passedCandlesList} filter={filter} page={page} limit={limit} isLoading={isLoading}/>
             <Pagination totalPages={totalPages} page={page} setPage={setPage}/>
         </div>
     )

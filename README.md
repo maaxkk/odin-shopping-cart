@@ -1,13 +1,13 @@
 ## Easy:
-- [ ] Fetch candles from mockapi
+- [x] Fetch candles from mockapi
 - [ ] Add query params feature
-- [ ] Add skeleton
-- [ ] Add empty card component
+- [x] Add skeleton
+- [x] Add empty card component
 
 
 ## Medium:
-- [ ] Rewrite context with redux
-- [ ] Add tests
+- [x] Rewrite context with redux
+- [x] Add tests
 
 ## Hard:
 - [ ] Write small backend for website

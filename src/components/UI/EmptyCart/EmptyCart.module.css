@@ -1,0 +1,25 @@
+.cartContent {
+    text-align: center;
+}
+
+.emptyCartImg {
+    max-width: 100%;
+    display: block;
+}
+
+.btnBack {
+    padding: 0.75em 1.75em;
+    color: #FF9499;
+    background-color: white;
+    border: 1px solid #FF9499;
+    border-radius: 1em;
+    cursor: pointer;
+    margin: 2em 0;
+    font-size: 1.25rem;
+}
+
+.btnBack:hover,
+.btnBack:focus {
+    color: white;
+    background-color: #FF9499;
+}
