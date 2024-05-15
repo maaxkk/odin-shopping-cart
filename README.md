@@ -1,6 +1,6 @@
 ## Easy:
 - [x] Fetch candles from mockapi
-- [x] Add query params feature
+- [x] Save user filters in url
 - [x] Add skeleton
 - [x] Add empty card component
 - [x] Not found page
