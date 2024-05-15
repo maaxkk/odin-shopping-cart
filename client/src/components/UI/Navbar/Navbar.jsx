@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import candleLogo from '../../../assets/candle.png';
 import classes from './Navbar.module.css';
 import MyInput from '../Input/MyInput.jsx';
