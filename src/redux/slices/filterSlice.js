@@ -1,11 +1,11 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     category: 'All',
     query: '',
     sort: '',
     currentPage: 1,
-}
+};
 
 const filterSlice = createSlice({
     name: 'filter',
@@ -28,10 +28,10 @@ const filterSlice = createSlice({
             state.query = action.payload.query;
             state.category = action.payload.category;
             state.sort = action.payload.sort;
-        }
-    }
-})
+        },
+    },
+});
 
-export const {setFilters, setCategory, setSort, setQuery, setCurrentPage} = filterSlice.actions;
+export const { setFilters, setCategory, setSort, setQuery, setCurrentPage } = filterSlice.actions;
 
 export default filterSlice.reducer;

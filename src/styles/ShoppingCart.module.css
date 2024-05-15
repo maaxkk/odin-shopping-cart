@@ -10,6 +10,7 @@
 .candlesList {
     width: 100%;
 }
+
 .title {
     margin-right: 0;
     margin-bottom: 0;
@@ -34,7 +35,7 @@
     font-weight: 500;
 }
 
-.cartTitle > h2 > svg{
+.cartTitle > h2 > svg {
     margin-right: 0.5em;
 }
 
@@ -46,6 +47,7 @@
     .cartTitle {
         flex-direction: row;
     }
+
     .title {
         margin-right: auto;
         margin-bottom: 20px;
