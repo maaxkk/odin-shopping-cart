@@ -25,7 +25,7 @@ const Category = sequelize.define('category', {
 
 const Candle = sequelize.define('candle', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    categoryId: { type: DataTypes.INTEGER },
+    categoryId: { type: DataTypes.INTEGER, references: { model: Category, key: 'id' } },
     title: { type: DataTypes.STRING },
     price: { type: DataTypes.INTEGER },
     imgSrc: { type: DataTypes.STRING, defaultValue: 'https://i.imgur.com/FBaxKY1.jpg' },
@@ -35,8 +35,8 @@ const Candle = sequelize.define('candle', {
 User.hasOne(Cart);
 Cart.belongsTo(User);
 
-Category.hasMany(Candle);
-Candle.belongsTo(Category);
+Category.hasMany(Candle, { foreignKey: 'categoryId' });
+Candle.belongsTo(Category, { foreignKey: 'categoryId' });
 
 Cart.hasMany(CartItem);
 CartItem.belongsTo(Cart);

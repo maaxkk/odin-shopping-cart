@@ -48,20 +48,20 @@ function Candles() {
         CandlesService.getAll().then(candleArr => {
             setCandles(candleArr);
             setIsLoading(false);
-            isMounted.current = true;
         });
+        isMounted.current = true;
     }, []);
 
     useEffect(() => {
         setTotalPages(getPageCount(candles.length, limit));
     }, [candles, limit]);
 
-    const categories = [];
+    const categories = ['All'];
     for (let candle of candles) {
-        if (categories.includes(candle.category)) {
+        if (categories.includes(candle.category['title'])) {
             continue;
         }
-        categories.push(candle.category);
+        categories.push(candle.category['title']);
     }
 
     return (

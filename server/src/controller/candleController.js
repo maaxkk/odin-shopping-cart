@@ -1,4 +1,4 @@
-const { Candle } = require('../models/models');
+const { Candle, Category } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 class CandleController {
@@ -9,7 +9,14 @@ class CandleController {
     }
 
     async getAll(req, res) {
-        const candles = await Candle.findAll();
+        const candles = await Candle.findAll({
+            include: [
+                {
+                    model: Category,
+                    attributes: ['title'],
+                },
+            ],
+        });
         return res.json(candles);
     }
 }

@@ -19,7 +19,7 @@ function CandleItem({ title, imgSrc, category, price, id }) {
             <div className={classes.titleWrapper}>
                 <h3 className={classes.title}>{title}</h3>
                 <p className={classes.category}>
-                    Category: <strong>{category}</strong>
+                    Category: <strong>{category['title']}</strong>
                 </p>
             </div>
             <div className={classes.buyWrapper}>

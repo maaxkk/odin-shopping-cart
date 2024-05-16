@@ -6,10 +6,12 @@ import MyButton from '../Button/MyButton.jsx';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../../redux/slices/filterSlice.js';
+import SignUp from '../../SignUp.jsx';
 
 function Navbar() {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.auth.isAuth);
 
     function handleSearchCandle(e) {
         let value = e.target.value;
@@ -23,7 +25,7 @@ function Navbar() {
                     <img className={classes.logo} src={candleLogo} alt={'Image of logo'} />
                     <div>
                         <h1 className={classes.title}>REACT CANDLES V2</h1>
-                        <p className={classes.subtitle}>made with love ❤ </p>
+                        <p className={classes.subtitle}>made with love ❤ | {!isAuth ? <SignUp /> : ''}</p>
                     </div>
                 </div>
             </Link>

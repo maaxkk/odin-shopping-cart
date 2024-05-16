@@ -4,10 +4,13 @@ import sortCandles from '../utils/sort.js';
 
 export function useSortedCandles(candles, category, sort) {
     const sortedCandles = useMemo(() => {
-        // let tmpSortedCandles = [{title: '123', category: 'All', id: 111}];
         let tmpSortedCandles;
         if (category) {
-            tmpSortedCandles = candles.filter(candle => candle.category.includes(category));
+            if (category === 'All') {
+                tmpSortedCandles = candles;
+            } else {
+                tmpSortedCandles = candles.filter(candle => candle.category['title'].includes(category));
+            }
         }
         if (sort) {
             tmpSortedCandles = sortCandles(tmpSortedCandles, sort);
