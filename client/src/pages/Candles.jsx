@@ -48,8 +48,8 @@ function Candles() {
         CandlesService.getAll().then(candleArr => {
             setCandles(candleArr);
             setIsLoading(false);
+            isMounted.current = true;
         });
-        isMounted.current = true;
     }, []);
 
     useEffect(() => {
@@ -57,13 +57,12 @@ function Candles() {
     }, [candles, limit]);
 
     const categories = [];
-    candles.forEach(candle => {
-        const tmpCategories = candle.category.split(',');
-        for (let candleCategory of tmpCategories) {
-            if (categories.includes(candleCategory)) continue;
-            categories.push(candleCategory);
+    for (let candle of candles) {
+        if (categories.includes(candle.category)) {
+            continue;
         }
-    });
+        categories.push(candle.category);
+    }
 
     return (
         <div>
