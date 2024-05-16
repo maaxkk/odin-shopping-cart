@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import data from '../utils/data.js';
 import classes from '../styles/ShoppingCart.module.css';
-import Navbar from '../components/UI/Navbar/Navbar.jsx';
-import { CartContext } from '../components/AppRouter.jsx';
 
 import CartItem from '../components/UI/CartItem/CartItem.jsx';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -13,7 +11,6 @@ import EmptyCart from '../components/UI/EmptyCart/EmptyCart.jsx';
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
-
     const itemsInCart = data.filter(item => {
         if (cart.itemsId.hasOwnProperty(item.id)) return item;
     });

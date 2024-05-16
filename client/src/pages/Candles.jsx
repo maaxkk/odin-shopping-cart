@@ -58,7 +58,8 @@ function Candles() {
 
     const categories = [];
     candles.forEach(candle => {
-        for (let candleCategory of candle.category) {
+        const tmpCategories = candle.category.split(',');
+        for (let candleCategory of tmpCategories) {
             if (categories.includes(candleCategory)) continue;
             categories.push(candleCategory);
         }

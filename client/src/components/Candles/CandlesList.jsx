@@ -1,7 +1,7 @@
 import React from 'react';
 import CandleItem from './CandleItem.jsx';
 import classes from '../../styles/CandlesList.module.css';
-import { useCandles, useSortedCandles } from '../../hooks/useCandles.js';
+import { useCandles } from '../../hooks/useCandles.js';
 import { useSelector } from 'react-redux';
 
 function CandlesList({ candles, limit }) {

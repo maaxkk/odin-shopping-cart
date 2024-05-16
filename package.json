@@ -1,0 +1,10 @@
+{
+  "name": "candle-shop",
+  "version": "1.0.0",
+  "scripts": {
+    "client:i": "cd client && npm install",
+    "server:i": "cd server && npm install",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev"
+  }
+}

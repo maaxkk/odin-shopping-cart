@@ -6,8 +6,8 @@ export default defineConfig({
     plugins: [react()],
     server: {
         proxy: {
-            '/api': {
-                target: 'http://localhost:4999',
+            '/api/v1/candles': {
+                target: 'http://localhost:5000',
                 secure: false,
             },
         },

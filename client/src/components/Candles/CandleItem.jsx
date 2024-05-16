@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classes from '../../styles/CandleItem.module.css';
-import { CartContext } from '../AppRouter.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../redux/slices/cartSlice.js';
 
-function CandleItem({ title, src, category, price, id }) {
+function CandleItem({ title, imgsrc, category, price, id }) {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
     let itemCounter = cart.itemsId.hasOwnProperty(id) ? (
@@ -14,13 +13,14 @@ function CandleItem({ title, src, category, price, id }) {
     ) : (
         'Add'
     );
+    const categories = category.split(',');
     return (
         <div className={classes.candle}>
-            <img className={classes.candleImg} data-testid={'img-el'} src={src} alt='Image of candle' />
+            <img className={classes.candleImg} data-testid={'img-el'} src={imgsrc} alt='Image of candle' />
             <div className={classes.titleWrapper}>
                 <h3 className={classes.title}>{title}</h3>
                 <p className={classes.category}>
-                    Category: <strong>{category[1]}</strong>
+                    Category: <strong>{categories[1]}</strong>
                 </p>
             </div>
             <div className={classes.buyWrapper}>
