@@ -3,7 +3,7 @@ import CandlesFilter from '../components/Candles/CandlesFilter.jsx';
 import CandlesList from '../components/Candles/CandlesList.jsx';
 import { getPageCount } from '../utils/pages.js';
 import Pagination from '../components/pagination/Pagination.jsx';
-import CandlesService from '../API/PostService.js';
+import CandlesService from '../API/index.js';
 import SkeletonList from '../components/UI/Skeleton/SkeletonList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';

@@ -1,5 +1,4 @@
 import React from 'react';
-import data from '../utils/data.js';
 import classes from '../styles/ShoppingCart.module.css';
 
 import CartItem from '../components/UI/CartItem/CartItem.jsx';
@@ -11,10 +10,6 @@ import EmptyCart from '../components/UI/EmptyCart/EmptyCart.jsx';
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
-    const itemsInCart = data.filter(item => {
-        if (cart.itemsId.hasOwnProperty(item.id)) return item;
-    });
-
     function clearCartHandler() {
         dispatch(clearCart());
     }
@@ -35,11 +30,11 @@ function ShoppingCart() {
                     </div>
                 )}
                 <div className={classes.candlesList}>
-                    {itemsInCart.map(item => (
+                    {cart.items.map(item => (
                         <CartItem
                             key={item.id}
                             title={item.title}
-                            count={cart.itemsId[item.id]}
+                            count={item.amount}
                             price={item.price}
                             id={item.id}
                         />

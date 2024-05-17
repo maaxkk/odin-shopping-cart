@@ -1,4 +1,4 @@
-import CandlesService from '../API/PostService.js';
+import CandlesService from '../API/index.js';
 
 function useFetching() {
     const candles = CandlesService.getAll();

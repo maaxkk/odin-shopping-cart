@@ -1,5 +1,5 @@
 import { expect, vi } from 'vitest';
-import CandlesService from '../API/PostService.js';
+import CandlesService from '../API/index.js';
 
 describe('fetch data from mock api', () => {
     let response = {

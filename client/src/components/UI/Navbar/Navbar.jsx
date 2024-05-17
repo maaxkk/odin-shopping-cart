@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../../redux/slices/filterSlice.js';
 import SignUp from '../../SignUp.jsx';
+import { setAuth } from '../../../redux/slices/authSlice.js';
 
 function Navbar() {
     const cart = useSelector(state => state.cart);
@@ -20,15 +21,26 @@ function Navbar() {
 
     return (
         <header className={classes.header}>
-            <Link to={'/'}>
-                <div className={classes.logoWrapper}>
-                    <img className={classes.logo} src={candleLogo} alt={'Image of logo'} />
-                    <div>
-                        <h1 className={classes.title}>REACT CANDLES V2</h1>
-                        <p className={classes.subtitle}>made with love ❤ | {!isAuth ? <SignUp /> : ''}</p>
+            <div>
+                <Link to={'/'}>
+                    <div className={classes.logoWrapper}>
+                        <img className={classes.logo} src={candleLogo} alt={'Image of logo'} />
+                        <div>
+                            <h1 className={classes.title}>REACT CANDLES V2</h1>
+                            <p className={classes.subtitle}>made with love ❤</p>
+                        </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+                {isAuth ? <button onClick={() => {
+                    localStorage.removeItem('token')
+                    dispatch(setAuth(false))
+                    }}>Log out</button> :
+                    <>
+                        <SignUp />
+                        <button>Login</button>
+                </>}
+
+            </div>
             <div className={classes.inputWrapper}>
                 <MyInput onChange={handleSearchCandle} data-testid={'input-el'} placeholder={'Search candles...'} />
             </div>
