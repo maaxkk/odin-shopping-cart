@@ -14,6 +14,7 @@ function CandlesList({ candles, limit }) {
                 {filteredCandles
                     ? filteredCandles.map(candle => <CandleItem key={candle.id} {...candle} />)
                     : candles.map(candle => <CandleItem key={candle.id} {...candle} />)}
+                {/*{candles.map(candle => <CandleItem key={candle.id} {...candle} />)}*/}
             </div>
         </div>
     );

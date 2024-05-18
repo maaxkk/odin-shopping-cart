@@ -6,11 +6,12 @@ import { addCandle} from '../../redux/slices/cartSlice.js';
 function CandleItem({ title, imgSrc, category, price, id }) {
     const cart = useSelector(state => state.cart);
     const isAuth = useSelector(state => state.auth.isAuth);
+    const userId = useSelector(state => state.auth.userId);
     const dispatch = useDispatch();
     let findCandle = cart.items.find(obj => obj.id === id)
     let itemCounter = 'Add'
     if (findCandle) {
-        itemCounter = findCandle.amount;
+        itemCounter = <>Add<span className={classes.itemCounter}>{findCandle.amount}</span></>;
     }
 
     function ToDo() {
@@ -21,7 +22,7 @@ function CandleItem({ title, imgSrc, category, price, id }) {
         if (!isAuth) {
             return alert('Please login first')
         }
-        dispatch(addCandle({userId: 1, candleId: 2}))
+        dispatch(addCandle({userId: userId, candleId: id}))
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import candleLogo from '../../../assets/candle.png';
 import classes from './Navbar.module.css';
 import MyInput from '../Input/MyInput.jsx';
@@ -6,8 +6,9 @@ import MyButton from '../Button/MyButton.jsx';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../../redux/slices/filterSlice.js';
-import SignUp from '../../SignUp.jsx';
-import { setAuth } from '../../../redux/slices/authSlice.js';
+import SignUp from '../../Auth/SignUp.jsx';
+import Logout from '../../Auth/Logout.jsx';
+import Login from '../../Auth/Login.jsx';
 
 function Navbar() {
     const cart = useSelector(state => state.cart);
@@ -31,15 +32,11 @@ function Navbar() {
                         </div>
                     </div>
                 </Link>
-                {isAuth ? <button onClick={() => {
-                    localStorage.removeItem('token')
-                    dispatch(setAuth(false))
-                    }}>Log out</button> :
+                {isAuth ? <Logout /> :
                     <>
                         <SignUp />
-                        <button>Login</button>
-                </>}
-
+                        <Login />
+                    </>}
             </div>
             <div className={classes.inputWrapper}>
                 <MyInput onChange={handleSearchCandle} data-testid={'input-el'} placeholder={'Search candles...'} />

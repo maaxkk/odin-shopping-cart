@@ -6,12 +6,18 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../redux/slices/cartSlice.js';
 import EmptyCart from '../components/UI/EmptyCart/EmptyCart.jsx';
+import NoAccess from './NoAccess.jsx';
 
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.auth.isAuth);
     function clearCartHandler() {
         dispatch(clearCart());
+    }
+
+    if (!isAuth) {
+        return (<NoAccess/>)
     }
 
     return (

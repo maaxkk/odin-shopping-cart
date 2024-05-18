@@ -9,9 +9,10 @@ class CartController {
             const newCandle = await CartItem.create({ candleId, userId, amount: 1 });
         } else {
              searchCandle.amount++;
+             searchCandle.save();
         }
         const candle = await Candle.findOne({ where: { id: candleId } });
-        candle.amount = searchCandle.amount || 1;
+        candle.amount = searchCandle?.amount || 1;
         return res.json(candle);
     }
 
@@ -21,12 +22,20 @@ class CartController {
         const candlesItemsIds = cartItems.map(obj => obj.id);
         const candlesInCart = await Candle.findAll({ where: { id: candlesItemsIds } });
 
-        console.log(cartItems);
+        const candlesWithAmount = candlesInCart.map(candle => {
+            candle.amount = 1;
+            for (let i = 0; i < cartItems.length; i++) {
+                if (cartItems[i].candleId === candle.id) {
+                    candle.amount = cartItems[i].amount;
+                }
+            }
+            return candle;
+        })
 
-        const totalCount = candlesInCart.length;
+        const totalCount = candlesWithAmount.reduce((acc, curr) => acc + curr.amount, 0);
         const totalPrice = candlesInCart
-            .reduce((acc, curr) => acc + curr.price, 0);
-        return res.json({ candlesInCart, totalCount, totalPrice });
+            .reduce((acc, curr) => acc + (curr.price * curr.amount), 0);
+        return res.json({ candlesWithAmount, totalCount, totalPrice });
     }
 
     async getAll(req, res) {

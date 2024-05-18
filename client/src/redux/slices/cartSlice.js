@@ -35,8 +35,7 @@ const cartSlice = createSlice({
                 state.items = [];
             })
             .addCase(fetchCandlesInCart.fulfilled, (state, action) => {
-                console.log(action.payload);
-                state.items = action.payload.candlesInCart;
+                state.items = action.payload.candlesWithAmount;
                 state.count = action.payload.totalCount;
                 state.totalPrice = action.payload.totalPrice;
 

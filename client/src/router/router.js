@@ -1,12 +1,15 @@
 import ShoppingCart from '../pages/ShoppingCart.jsx';
 import Candles from '../pages/Candles.jsx';
 import NotFound from '../pages/NotFound.jsx';
-import Registration from '../components/Registration.jsx';
+import RegistrationForm from '../components/Auth/RegistrationForm.jsx';
+import LoginForm from '../components/Auth/LoginForm.jsx';
 
 export const publicRoutes = [
     { path: '/', element: Candles },
     { path: '*', element: NotFound },
-    { path: '/registration', element: Registration },
+    { path: '/registration', element: RegistrationForm },
+    { path: '/login', element: LoginForm },
+    { path: '/cart', element: ShoppingCart },
 ];
 
 export const privateRoutes = [

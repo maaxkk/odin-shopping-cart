@@ -35,3 +35,28 @@ a {
     justify-content: space-evenly;
     grid-gap: 2em;
 }
+
+.btn {
+    padding: 0.5em 1em;
+    background-color: white;
+    border: 1px solid #FF9499;
+    color: #FF9499;
+    cursor: pointer;
+    transition: all 250ms;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 20px;
+    margin-right: 1em;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #FF9499;
+    color: white;
+}
+
+.spinnerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,41 @@
+version: '3.6'
+
+services:
+  backend:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=maaxkk
+      - DB_PASSWORD=1
+      - DB_NAME=candles
+    volumes:
+      - ./server:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./client
+    restart: always
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=maaxkk
+      - POSTGRES_PASSWORD=1
+      - POSTGRES_DB=candles
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

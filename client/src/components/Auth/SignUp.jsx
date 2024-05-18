@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import classes from '../styles/SignUp.module.css';
+import classes from '../../styles/SignUp.module.css';
 
 function SignUp() {
     const location = useLocation();
@@ -12,7 +12,7 @@ function SignUp() {
     }
     return (
         <Link to={`${btnLink}`}>
-            <button className={classes.signup}>{btnPlaceholder}</button>
+            <button className={'btn'}>{btnPlaceholder}</button>
         </Link>
     );
 }
