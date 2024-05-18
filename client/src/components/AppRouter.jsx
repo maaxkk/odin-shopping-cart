@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar.jsx';
-import { publicRoutes, privateRoutes } from '../router/router.js';
+import { publicRoutes } from '../router/router.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { check } from '../API/userAPI.js';
 import { setAuth, setUserId } from '../redux/slices/authSlice.js';
@@ -10,23 +10,25 @@ import { jwtDecode } from 'jwt-decode';
 
 function AppRouter() {
     const isAuth = useSelector(state => state.auth.isAuth);
+    const cart = useSelector(state => state.cart);
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
-    let userToken = localStorage.getItem('token');
-    let decodeToken;
-    if (userToken) decodeToken = jwtDecode(userToken);
-    console.log(decodeToken);
     useEffect(() => {
-        setTimeout(() => {
-            check().then(data => {
+        // setTimeout(() => {
+        check()
+            .then(data => {
+                let userToken = localStorage.getItem('token');
+                let decodeToken = jwtDecode(userToken);
                 dispatch(setAuth(true));
-                if (decodeToken.id) {
-                    dispatch(fetchCandlesInCart(decodeToken.id));
-                    dispatch(setUserId(decodeToken.id));
-                }
-            }).finally(() => setIsLoading(false));
-        }, 1000);
-    }, []);
+                dispatch(fetchCandlesInCart(decodeToken.id));
+                dispatch(setUserId(decodeToken.id));
+            })
+            .catch(e => {
+                console.log(e.response.data.message);
+            })
+            .finally(() => setIsLoading(false));
+        // }, 1000);
+    }, [isAuth]);
 
     if (isLoading) {
         return (
@@ -44,10 +46,10 @@ function AppRouter() {
         <>
             <Navbar />
             <Routes>
-                {isAuth &&
-                    privateRoutes.map((route, index) => (
-                        <Route key={index} path={route.path} element={<route.element />} />
-                    ))}
+                {/*{isAuth &&*/}
+                {/*    privateRoutes.map((route, index) => (*/}
+                {/*        <Route key={index} path={route.path} element={<route.element />} />*/}
+                {/*    ))}*/}
                 {publicRoutes.map((route, index) => (
                     <Route key={index} path={route.path} element={<route.element />} />
                 ))}

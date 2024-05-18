@@ -12,8 +12,7 @@ export const publicRoutes = [
     { path: '/cart', element: ShoppingCart },
 ];
 
-export const privateRoutes = [
-    { path: '/', element: Candles },
-    { path: '*', element: NotFound },
-    { path: '/cart', element: ShoppingCart },
-];
+// export const privateRoutes = [
+//     { path: '/', element: Candles },
+//     { path: '*', element: NotFound },
+// ];

@@ -1,7 +1,23 @@
 version: '3.6'
 
 services:
-  backend:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: maaxkk
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: candles
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U maaxkk -d candles"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  server:
     build: ./server
     ports:
       - "5000:5000"
@@ -11,31 +27,23 @@ services:
       - DB_USER=maaxkk
       - DB_PASSWORD=1
       - DB_NAME=candles
-    volumes:
-      - ./server:/app
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - app-network
 
-  frontend:
+  client:
     build: ./client
-    restart: always
     ports:
       - "5173:5173"
-    volumes:
-      - ./client:/app
-
-  postgres:
-    image: postgres:16-alpine
-    restart: always
-    environment:
-      - POSTGRES_USER=maaxkk
-      - POSTGRES_PASSWORD=1
-      - POSTGRES_DB=candles
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    depends_on:
+      - server
+    networks:
+      - app-network
 
 volumes:
   pgdata:
+
+networks:
+  app-network:

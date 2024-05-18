@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchCandlesInCart = createAsyncThunk('cart/fetchCartCandles', async (userId) => {
     const response = await axios.get('api/cart/summary', {params: { userId } });
-    console.log(response);
+    // console.log(response.data);
     return response.data;
 });
 
@@ -19,22 +19,35 @@ export const addCandle = createAsyncThunk('cart/add', async (params) => {
     return response.data
 })
 
-export const clearCart = createAsyncThunk('cart/clear', async() => {
-    const response = await axios.post('api/cart/clear')
-    console.log(response);
+export const removeCandle = createAsyncThunk('cart/remove', async (params) => {
+    const {userId, candleId} = params;
+    const response = await axios.post('api/cart/remove', {userId, candleId})
+    return response.data
+})
+
+export const clearCart = createAsyncThunk('cart/clear', async(userId) => {
+    const response = await axios.post('api/cart/clear', {userId});
+    // console.log(response.data);
     return response
 })
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
-    reducers: {},
+    reducers: {
+        clearCartUI(state) {
+            state.items = [];
+            state.count = 0;
+            state.totalPrice = 0 ;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCandlesInCart.pending, (state) => {
                 state.items = [];
             })
             .addCase(fetchCandlesInCart.fulfilled, (state, action) => {
+                console.log(action.payload);
                 state.items = action.payload.candlesWithAmount;
                 state.count = action.payload.totalCount;
                 state.totalPrice = action.payload.totalPrice;
@@ -54,10 +67,24 @@ const cartSlice = createSlice({
                 state.totalPrice += newItem.price;
                 state.count++;
             })
+            .addCase(removeCandle.fulfilled, (state, action) => {
+                let currItem = action.payload;
+                const itemInCart = state.items.find(obj => obj.id === currItem.id)
+                itemInCart.amount--;
+                if (itemInCart.amount === 0) {
+                    state.items = state.items.filter(obj => obj.id !== itemInCart.id)
+                }
+                state.totalPrice -= currItem.price;
+                state.count--;
+            })
             .addCase(clearCart.fulfilled, (state) => {
                 state.items = [];
+                state.count = 0;
+                state.totalPrice = 0;
             })
     },
 });
+
+export const {clearCartUI} = cartSlice.actions;
 
 export default cartSlice.reducer;

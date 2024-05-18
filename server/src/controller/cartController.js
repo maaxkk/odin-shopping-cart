@@ -16,10 +16,25 @@ class CartController {
         return res.json(candle);
     }
 
+    async remove(req, res) {
+        const { candleId, userId } = req.body;
+        let searchCandle = await CartItem.findOne({ where: { userId, candleId } });
+        searchCandle.amount--;
+        if (searchCandle.amount === 0) {
+            await CartItem.destroy( {where: {id: searchCandle.id}})
+        }
+        else {
+            searchCandle.save();
+        }
+        const candle = await Candle.findOne({ where: { id: candleId } });
+        return res.json(candle);
+    }
+
     async summary(req, res) {
         const { userId } = req.query;
         const cartItems = await CartItem.findAll({ where: { userId } });
-        const candlesItemsIds = cartItems.map(obj => obj.id);
+        // console.log(JSON.stringify(cartItems));
+        const candlesItemsIds = cartItems.map(obj => obj.candleId);
         const candlesInCart = await Candle.findAll({ where: { id: candlesItemsIds } });
 
         const candlesWithAmount = candlesInCart.map(candle => {
@@ -36,6 +51,12 @@ class CartController {
         const totalPrice = candlesInCart
             .reduce((acc, curr) => acc + (curr.price * curr.amount), 0);
         return res.json({ candlesWithAmount, totalCount, totalPrice });
+    }
+
+    async clear(req, res) {
+        const {userId} = req.body;
+        await CartItem.destroy({ where: {userId}})
+        return res.json('was deleted')
     }
 
     async getAll(req, res) {

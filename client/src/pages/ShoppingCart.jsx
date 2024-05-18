@@ -11,12 +11,13 @@ import NoAccess from './NoAccess.jsx';
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.auth.isAuth);
+    const user = useSelector(state => state.auth);
     function clearCartHandler() {
-        dispatch(clearCart());
+        console.log(user);
+        dispatch(clearCart(user.userId));
     }
 
-    if (!isAuth) {
+    if (!user.isAuth) {
         return (<NoAccess/>)
     }
 

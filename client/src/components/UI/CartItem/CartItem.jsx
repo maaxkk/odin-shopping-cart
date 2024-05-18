@@ -1,14 +1,19 @@
 import React from 'react';
 import candleIcon from '../../../assets/candle.png';
 import classes from './CartItem.module.css';
-import { useDispatch } from 'react-redux';
-import { addCandle } from '../../../redux/slices/cartSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCandle, removeCandle } from '../../../redux/slices/cartSlice.js';
 
 function CartItem({ title, count, id, price }) {
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.auth.userId);
 
-    function ToDo() {
-        console.log('Will be done soon :) ');
+    function handleAddCandle() {
+        dispatch(addCandle({ userId: userId, candleId: id }));
+    }
+
+    function handleRemoveCandle() {
+        dispatch(removeCandle({ userId: userId, candleId: id }));
     }
 
     return (
@@ -18,15 +23,15 @@ function CartItem({ title, count, id, price }) {
                 <h2 className={classes.title}>{title}</h2>
             </div>
             <div className={classes.btns}>
-                <button className={classes.minus} onClick={() => ToDo()}>
+                <button className={classes.minus} onClick={() => handleRemoveCandle()}>
                     <i className={'fa fa-minus'}></i>
                 </button>
                 <p className={classes.count}>{count}</p>
-                <button className={classes.plus} onClick={() => dispatch(addCandle(1, 1))}>
+                <button className={classes.plus} onClick={() => handleAddCandle()}>
                     <i className={'fa fa-plus'}></i>
                 </button>
                 <p className={classes.totalPrice}>{count * price} $</p>
-                <button className={classes.close} onClick={() => ToDo()}>
+                <button className={classes.close}>
                     <i className={'fa fa-close'}></i>
                 </button>
             </div>
