@@ -26,11 +26,11 @@ function CartItem({ title, count, id, price }) {
                 <button className={classes.minus} onClick={() => handleRemoveCandle()}>
                     <i className={'fa fa-minus'}></i>
                 </button>
-                <p className={classes.count}>{count}</p>
+                <p className={classes.count}><strong>{count}</strong></p>
                 <button className={classes.plus} onClick={() => handleAddCandle()}>
                     <i className={'fa fa-plus'}></i>
                 </button>
-                <p className={classes.totalPrice}>{count * price} $</p>
+                <p className={classes.totalPrice}><strong>{count * price} €</strong></p>
                 <button className={classes.close}>
                     <i className={'fa fa-close'}></i>
                 </button>

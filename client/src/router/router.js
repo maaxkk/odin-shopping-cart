@@ -3,6 +3,7 @@ import Candles from '../pages/Candles.jsx';
 import NotFound from '../pages/NotFound.jsx';
 import RegistrationForm from '../components/Auth/RegistrationForm.jsx';
 import LoginForm from '../components/Auth/LoginForm.jsx';
+import SuccessPayment from '../components/SuccessPayment.jsx';
 
 export const publicRoutes = [
     { path: '/', element: Candles },
@@ -12,7 +13,6 @@ export const publicRoutes = [
     { path: '/cart', element: ShoppingCart },
 ];
 
-// export const privateRoutes = [
-//     { path: '/', element: Candles },
-//     { path: '*', element: NotFound },
-// ];
+export const privateRoutes = [
+    { path: '/success', element: SuccessPayment },
+];

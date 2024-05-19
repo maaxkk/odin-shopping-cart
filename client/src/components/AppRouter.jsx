@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar.jsx';
-import { publicRoutes } from '../router/router.js';
+import { privateRoutes, publicRoutes } from '../router/router.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { check } from '../API/userAPI.js';
 import { setAuth, setUserId } from '../redux/slices/authSlice.js';
@@ -46,10 +46,10 @@ function AppRouter() {
         <>
             <Navbar />
             <Routes>
-                {/*{isAuth &&*/}
-                {/*    privateRoutes.map((route, index) => (*/}
-                {/*        <Route key={index} path={route.path} element={<route.element />} />*/}
-                {/*    ))}*/}
+                {isAuth &&
+                    privateRoutes.map((route, index) => (
+                        <Route key={index} path={route.path} element={<route.element />} />
+                    ))}
                 {publicRoutes.map((route, index) => (
                     <Route key={index} path={route.path} element={<route.element />} />
                 ))}

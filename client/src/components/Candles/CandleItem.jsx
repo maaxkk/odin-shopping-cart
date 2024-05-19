@@ -35,7 +35,7 @@ function CandleItem({ title, imgSrc, category, price, id }) {
                 </p>
             </div>
             <div className={classes.buyWrapper}>
-                <p className={classes.price}>{price}$</p>
+                <p className={classes.price}>{price} €</p>
                 <button className={classes.btnAdd} onClick={() => handleAddCandle()}>
                     <i className={'fa fa-plus'}></i>
                     {itemCounter}

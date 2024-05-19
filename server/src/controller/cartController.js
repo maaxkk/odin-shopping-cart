@@ -1,5 +1,6 @@
 const { CartItem, Candle } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const stripe = require('stripe')(process.env.STRIPE_TEST_KEY)
 
 class CartController {
     async add(req, res) {
@@ -33,7 +34,6 @@ class CartController {
     async summary(req, res) {
         const { userId } = req.query;
         const cartItems = await CartItem.findAll({ where: { userId } });
-        // console.log(JSON.stringify(cartItems));
         const candlesItemsIds = cartItems.map(obj => obj.candleId);
         const candlesInCart = await Candle.findAll({ where: { id: candlesItemsIds } });
 
@@ -57,6 +57,31 @@ class CartController {
         const {userId} = req.body;
         await CartItem.destroy({ where: {userId}})
         return res.json('was deleted')
+    }
+
+    async checkout(req, res) {
+        const { userId } = req.body;
+        const cartItems = await CartItem.findAll({ where: { userId } });
+        const candlesItemsIds = cartItems.map(obj => obj.candleId);
+        const candlesInCart = await Candle.findAll({ where: { id: candlesItemsIds } });
+
+        const candlesWithAmount = candlesInCart.map(candle => {
+            let obj = {}
+            for (let i = 0; i < cartItems.length; i++) {
+                if (cartItems[i].candleId === candle.id) {
+                    obj['quantity'] = cartItems[i].amount;
+                    obj['price_data'] = {currency: 'eur', product_data: {name: candle.title}, unit_amount: candle.price * 100}
+                }
+            }
+            return obj;
+        })
+        const session = await stripe.checkout.sessions.create({
+            line_items: candlesWithAmount,
+            mode: 'payment',
+            success_url: 'http://localhost:5173/success',
+            cancel_url: 'http://localhost:5173/cart'
+        })
+        res.json({url: session.url})
     }
 
     async getAll(req, res) {

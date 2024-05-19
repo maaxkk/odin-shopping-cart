@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
     count: 0,
@@ -25,9 +26,14 @@ export const removeCandle = createAsyncThunk('cart/remove', async (params) => {
     return response.data
 })
 
+export const checkout = createAsyncThunk('cart/checkout', async(userId) => {
+    const response = await axios.post('api/cart/checkout', {userId})
+    console.log(response);
+    return response.data;
+})
+
 export const clearCart = createAsyncThunk('cart/clear', async(userId) => {
     const response = await axios.post('api/cart/clear', {userId});
-    // console.log(response.data);
     return response
 })
 
@@ -76,6 +82,10 @@ const cartSlice = createSlice({
                 }
                 state.totalPrice -= currItem.price;
                 state.count--;
+            })
+            .addCase(checkout.fulfilled, (state, action) => {
+                const nextUrl = action.payload.url;
+                window.location.href = nextUrl;
             })
             .addCase(clearCart.fulfilled, (state) => {
                 state.items = [];
