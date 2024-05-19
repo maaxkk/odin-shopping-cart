@@ -1,0 +1,62 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: maaxkk
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: candles
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U maaxkk -d candles"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=maaxkk
+      - DB_PASSWORD=1
+      - DB_NAME=candles
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app-network
+    depends_on:
+      - server
+      - client
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+
+networks:
+  app-network:
