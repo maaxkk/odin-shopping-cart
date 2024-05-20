@@ -1,6 +1,6 @@
 const { CartItem, Candle } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const stripe = require('stripe')(process.env.STRIPE_TEST_KEY)
+const stripe = require('stripe')(process.env.STRIPE_TEST_KEY);
 
 class CartController {
     async add(req, res) {
@@ -9,8 +9,8 @@ class CartController {
         if (!searchCandle) {
             const newCandle = await CartItem.create({ candleId, userId, amount: 1 });
         } else {
-             searchCandle.amount++;
-             searchCandle.save();
+            searchCandle.amount++;
+            searchCandle.save();
         }
         const candle = await Candle.findOne({ where: { id: candleId } });
         candle.amount = searchCandle?.amount || 1;
@@ -22,9 +22,8 @@ class CartController {
         let searchCandle = await CartItem.findOne({ where: { userId, candleId } });
         searchCandle.amount--;
         if (searchCandle.amount === 0) {
-            await CartItem.destroy( {where: {id: searchCandle.id}})
-        }
-        else {
+            await CartItem.destroy({ where: { id: searchCandle.id } });
+        } else {
             searchCandle.save();
         }
         const candle = await Candle.findOne({ where: { id: candleId } });
@@ -45,7 +44,7 @@ class CartController {
                 }
             }
             return candle;
-        })
+        });
 
         const totalCount = candlesWithAmount.reduce((acc, curr) => acc + curr.amount, 0);
         const totalPrice = candlesInCart
@@ -54,9 +53,9 @@ class CartController {
     }
 
     async clear(req, res) {
-        const {userId} = req.body;
-        await CartItem.destroy({ where: {userId}})
-        return res.json('was deleted')
+        const { userId } = req.body;
+        await CartItem.destroy({ where: { userId } });
+        return res.json('was deleted');
     }
 
     async checkout(req, res) {
@@ -66,22 +65,26 @@ class CartController {
         const candlesInCart = await Candle.findAll({ where: { id: candlesItemsIds } });
 
         const candlesWithAmount = candlesInCart.map(candle => {
-            let obj = {}
+            let obj = {};
             for (let i = 0; i < cartItems.length; i++) {
                 if (cartItems[i].candleId === candle.id) {
                     obj['quantity'] = cartItems[i].amount;
-                    obj['price_data'] = {currency: 'eur', product_data: {name: candle.title}, unit_amount: candle.price * 100}
+                    obj['price_data'] = {
+                        currency: 'eur',
+                        product_data: { name: candle.title },
+                        unit_amount: candle.price * 100,
+                    };
                 }
             }
             return obj;
-        })
+        });
         const session = await stripe.checkout.sessions.create({
             line_items: candlesWithAmount,
             mode: 'payment',
             success_url: 'http://localhost:5173/success',
-            cancel_url: 'http://localhost:5173/cart'
-        })
-        res.json({url: session.url})
+            cancel_url: 'http://localhost:5173/cart',
+        });
+        res.json({ url: session.url });
     }
 
     async getAll(req, res) {

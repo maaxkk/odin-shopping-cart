@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../redux/slices/cartSlice.js';
-import success from '../assets/lottie/success.json'
-import classes from '../styles/SuccessPayment.module.css'
+import success from '../assets/lottie/success.json';
+import classes from '../styles/SuccessPayment.module.css';
 import Lottie from 'lottie-react';
 
 function SuccessPayment() {

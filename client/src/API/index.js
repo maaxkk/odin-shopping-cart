@@ -7,26 +7,27 @@ export default class CandlesService {
         return await resp.json();
     }
 
-    static async getById(id) {}
+    static async getById(id) {
+    }
 }
 
 
 const $host = axios.create({
-    baseURL: 'http://localhost:5000'
-})
+    baseURL: 'http://localhost:5000',
+});
 
 const $authHost = axios.create({
     baseURL: 'http://localhost:5000',
-})
+});
 
 const authInterception = config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
+    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
     return config;
-}
+};
 
-$authHost.interceptors.request.use(authInterception)
+$authHost.interceptors.request.use(authInterception);
 
 export {
     $host,
     $authHost,
-}
+};

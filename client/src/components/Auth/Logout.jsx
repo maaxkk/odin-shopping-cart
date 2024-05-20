@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { clearCartUI } from '../../redux/slices/cartSlice.js';
 
 function Logout() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
     function logOutHandle() {
         dispatch(setAuth(false));
         dispatch(clearCartUI());
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
         navigate('/');
     }
 

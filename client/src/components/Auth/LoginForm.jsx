@@ -14,7 +14,7 @@ function LoginForm() {
     async function Login() {
         try {
             const response = await login(email, password);
-            navigate('/')
+            navigate('/');
             dispatch(setAuth(true));
         } catch (e) {
             alert(e.response.data.message);
@@ -26,7 +26,7 @@ function LoginForm() {
     }
 
     function handleChange(e, setState) {
-        setState(e.target.value)
+        setState(e.target.value);
     }
 
     return (
