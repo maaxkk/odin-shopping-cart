@@ -32,11 +32,14 @@ function Navbar() {
                         </div>
                     </div>
                 </Link>
-                {isAuth ? <Logout /> :
+                {isAuth ? (
+                    <Logout />
+                ) : (
                     <>
                         <SignUp />
                         <Login />
-                    </>}
+                    </>
+                )}
             </div>
             <div className={classes.inputWrapper}>
                 <MyInput onChange={handleSearchCandle} data-testid={'input-el'} placeholder={'Search candles...'} />

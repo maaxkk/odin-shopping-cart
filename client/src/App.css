@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #FEDF8B;
+    background-color: #fedf8b;
 }
 
 a {
@@ -39,8 +39,8 @@ a {
 .btn {
     padding: 0.5em 1em;
     background-color: white;
-    border: 1px solid #FF9499;
-    color: #FF9499;
+    border: 1px solid #ff9499;
+    color: #ff9499;
     cursor: pointer;
     transition: all 250ms;
     font-weight: bold;
@@ -49,8 +49,9 @@ a {
     margin-right: 1em;
 }
 
-.btn:hover, .btn:focus {
-    background-color: #FF9499;
+.btn:hover,
+.btn:focus {
+    background-color: #ff9499;
     color: white;
 }
 

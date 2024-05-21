@@ -5,6 +5,8 @@
     "client:i": "cd client && npm install",
     "server:i": "cd server && npm install",
     "client": "cd client && npm run dev",
-    "server": "cd server && npm run dev"
+    "server": "cd server && npm run dev",
+    "prettier:s": "cd server && npm run prettier",
+    "prettier:c": "cd client && npm run prettier"
   }
 }

@@ -15,7 +15,7 @@ function ShoppingCart() {
     const user = useSelector(state => state.auth);
 
     if (!user.isAuth) {
-        return (<NoAccess />);
+        return <NoAccess />;
     }
 
     function clearCartHandler() {
@@ -53,19 +53,27 @@ function ShoppingCart() {
                         />
                     ))}
                 </div>
-                {cart.count > 0 &&
+                {cart.count > 0 && (
                     <>
                         <div className={classes.totalWrapper}>
-                            <p>Total candles: <strong>{cart.count} pcs</strong></p>
-                            <p className={classes.totalPriceP}>Total price: <span
-                                className={classes.totalPrice}>{cart.totalPrice} €</span></p>
+                            <p>
+                                Total candles: <strong>{cart.count} pcs</strong>
+                            </p>
+                            <p className={classes.totalPriceP}>
+                                Total price: <span className={classes.totalPrice}>{cart.totalPrice} €</span>
+                            </p>
                         </div>
                         <div className={classes.totalWrapper}>
-                            <button className={classes.goBack}><IoIosArrowBack />Back</button>
-                            <button onClick={checkoutHandle} className={classes.payNow}>Pay now</button>
+                            <button className={classes.goBack}>
+                                <IoIosArrowBack />
+                                Back
+                            </button>
+                            <button onClick={checkoutHandle} className={classes.payNow}>
+                                Pay now
+                            </button>
                         </div>
                     </>
-                }
+                )}
             </div>
         </>
     );

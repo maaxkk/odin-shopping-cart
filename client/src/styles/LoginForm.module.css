@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 400px;
     margin: 2em auto;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 0.5em;
     padding: 2em;
 }
@@ -18,24 +18,26 @@
     text-align: center;
 }
 
-.signUp {
+.login {
     padding: 0.5em 0;
     background-color: white;
-    border: 1px solid #FF9499;
-    color: #FF9499;
+    border: 1px solid #ff9499;
+    color: #ff9499;
     cursor: pointer;
     transition: all 250ms;
     font-weight: bold;
     font-size: 1.1rem;
+    text-align: center;
 }
 
-.signUp:hover, .signUp:focus {
-    background-color: #FF9499;
+.login:hover,
+.login:focus {
+    background-color: #ff9499;
     color: white;
 }
 
 .regInput {
     max-width: 400px;
     padding: 0.5em 1em;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }

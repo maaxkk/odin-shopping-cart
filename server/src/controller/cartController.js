@@ -47,8 +47,7 @@ class CartController {
         });
 
         const totalCount = candlesWithAmount.reduce((acc, curr) => acc + curr.amount, 0);
-        const totalPrice = candlesInCart
-            .reduce((acc, curr) => acc + (curr.price * curr.amount), 0);
+        const totalPrice = candlesInCart.reduce((acc, curr) => acc + curr.price * curr.amount, 0);
         return res.json({ candlesWithAmount, totalCount, totalPrice });
     }
 

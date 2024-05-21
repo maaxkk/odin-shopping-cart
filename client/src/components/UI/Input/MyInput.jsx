@@ -13,6 +13,15 @@ function MyInput(props) {
         );
     }
 
+    if (props.formInput === true) {
+        return (
+            <>
+                <input {...props} />
+                <span className={classes.errorMsg}>{props.errorMessage}</span>
+            </>
+        );
+    }
+
     return <input {...props} className={classes.myInput} />;
 }
 

@@ -35,11 +35,14 @@ function AppRouter() {
             <>
                 <Navbar />
                 <div className={'spinnerWrapper'}>
-                    <img className={'spinner'}
-                         alt={'Gif image of spinner loader'}
-                         src={'https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif'} />
+                    <img
+                        className={'spinner'}
+                        alt={'Gif image of spinner loader'}
+                        src={'https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif'}
+                    />
                 </div>
-            </>);
+            </>
+        );
     }
 
     return (

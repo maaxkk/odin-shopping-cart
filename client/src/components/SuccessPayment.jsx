@@ -14,11 +14,8 @@ function SuccessPayment() {
     return (
         <div className={classes.wrapper}>
             <h3 style={classes.paymentTitle}>Payment was successfully proceed</h3>
-            <Lottie animationData={success}
-                    className={classes.animation}
-            />
+            <Lottie animationData={success} className={classes.animation} />
         </div>
-
     );
 }
 

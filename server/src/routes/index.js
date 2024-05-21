@@ -2,7 +2,7 @@ const Router = require('express');
 const router = new Router();
 const candleRouter = require('./candleRouter.js');
 const userRouter = require('./userRouter.js');
-const cartRouter = require('./cartRouter.js')
+const cartRouter = require('./cartRouter.js');
 const categoryRouter = require('./categoryRouter.js');
 
 router.use('/user', userRouter);

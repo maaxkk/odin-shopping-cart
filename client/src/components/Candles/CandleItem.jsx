@@ -11,7 +11,11 @@ function CandleItem({ title, imgSrc, category, price, id }) {
     let findCandle = cart.items.find(obj => obj.id === id);
     let itemCounter = 'Add';
     if (findCandle) {
-        itemCounter = <>Add<span className={classes.itemCounter}>{findCandle.amount}</span></>;
+        itemCounter = (
+            <>
+                Add<span className={classes.itemCounter}>{findCandle.amount}</span>
+            </>
+        );
     }
 
     function ToDo() {
@@ -27,7 +31,7 @@ function CandleItem({ title, imgSrc, category, price, id }) {
 
     return (
         <div className={classes.candle}>
-            <img className={classes.candleImg} data-testid={'img-el'} src={imgSrc} alt="Image of candle" />
+            <img className={classes.candleImg} data-testid={'img-el'} src={imgSrc} alt='Image of candle' />
             <div className={classes.titleWrapper}>
                 <h3 className={classes.title}>{title}</h3>
                 <p className={classes.category}>

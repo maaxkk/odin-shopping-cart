@@ -7,10 +7,8 @@ export default class CandlesService {
         return await resp.json();
     }
 
-    static async getById(id) {
-    }
+    static async getById(id) {}
 }
-
 
 const $host = axios.create({
     baseURL: 'http://localhost:5000',
@@ -27,7 +25,4 @@ const authInterception = config => {
 
 $authHost.interceptors.request.use(authInterception);
 
-export {
-    $host,
-    $authHost,
-};
+export { $host, $authHost };

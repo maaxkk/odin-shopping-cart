@@ -48,7 +48,7 @@
 }
 
 .totalPrice {
-    color: #FC9497;
+    color: #fc9497;
     font-weight: bold;
 }
 
@@ -65,13 +65,13 @@
     display: flex;
     align-items: center;
     padding: 0.4em 1em;
-    border: 2px solid rgba(0,0,0,0.1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     font-size: 1.1rem;
     cursor: pointer;
 }
 
 .payNow {
-    background-color: #FC9497;
+    background-color: #fc9497;
     color: white;
     border-radius: 30px;
     padding: 0.4em 1em;

@@ -11,8 +11,8 @@ const User = sequelize.define('user', {
 
 const CartItem = sequelize.define('cartItem', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    userId: {type: DataTypes.INTEGER},
-    candleId: {type: DataTypes.INTEGER},
+    userId: { type: DataTypes.INTEGER },
+    candleId: { type: DataTypes.INTEGER },
     amount: { type: DataTypes.INTEGER },
 });
 
@@ -30,14 +30,14 @@ const Candle = sequelize.define('candle', {
     amount: { type: DataTypes.INTEGER },
 });
 
-User.hasMany(CartItem, {foreignKey: 'userId'});
-CartItem.belongsTo(User, {foreignKey: 'userId'});
+User.hasMany(CartItem, { foreignKey: 'userId' });
+CartItem.belongsTo(User, { foreignKey: 'userId' });
 
 Category.hasMany(Candle, { foreignKey: 'categoryId' });
 Candle.belongsTo(Category, { foreignKey: 'categoryId' });
 
-Candle.hasMany(CartItem, {foreignKey: 'candleId'});
-CartItem.belongsTo(Candle, {foreignKey: 'candleId'});
+Candle.hasMany(CartItem, { foreignKey: 'candleId' });
+CartItem.belongsTo(Candle, { foreignKey: 'candleId' });
 
 module.exports = {
     User,

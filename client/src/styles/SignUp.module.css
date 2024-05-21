@@ -1,9 +1,9 @@
 .signup {
     padding: 0.5em 1em;
-    color: #FF9499;
+    color: #ff9499;
     background-color: white;
     border-radius: 50px;
-    border: 1px solid #FF9499;
+    border: 1px solid #ff9499;
     font-weight: bold;
     cursor: pointer;
     font-size: 1.1rem;
@@ -13,5 +13,5 @@
 .signup:hover,
 .signup:focus {
     color: white;
-    background-color: #FF9499;
+    background-color: #ff9499;
 }

@@ -13,6 +13,4 @@ export const publicRoutes = [
     { path: '/cart', element: ShoppingCart },
 ];
 
-export const privateRoutes = [
-    { path: '/success', element: SuccessPayment },
-];
+export const privateRoutes = [{ path: '/success', element: SuccessPayment }];

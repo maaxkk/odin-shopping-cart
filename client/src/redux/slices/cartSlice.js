@@ -8,31 +8,31 @@ const initialState = {
     items: [],
 };
 
-export const fetchCandlesInCart = createAsyncThunk('cart/fetchCartCandles', async (userId) => {
+export const fetchCandlesInCart = createAsyncThunk('cart/fetchCartCandles', async userId => {
     const response = await axios.get('api/cart/summary', { params: { userId } });
     // console.log(response.data);
     return response.data;
 });
 
-export const addCandle = createAsyncThunk('cart/add', async (params) => {
+export const addCandle = createAsyncThunk('cart/add', async params => {
     const { userId, candleId } = params;
     const response = await axios.post('api/cart/add', { userId, candleId });
     return response.data;
 });
 
-export const removeCandle = createAsyncThunk('cart/remove', async (params) => {
+export const removeCandle = createAsyncThunk('cart/remove', async params => {
     const { userId, candleId } = params;
     const response = await axios.post('api/cart/remove', { userId, candleId });
     return response.data;
 });
 
-export const checkout = createAsyncThunk('cart/checkout', async (userId) => {
+export const checkout = createAsyncThunk('cart/checkout', async userId => {
     const response = await axios.post('api/cart/checkout', { userId });
     console.log(response);
     return response.data;
 });
 
-export const clearCart = createAsyncThunk('cart/clear', async (userId) => {
+export const clearCart = createAsyncThunk('cart/clear', async userId => {
     const response = await axios.post('api/cart/clear', { userId });
     return response;
 });
@@ -47,9 +47,9 @@ const cartSlice = createSlice({
             state.totalPrice = 0;
         },
     },
-    extraReducers: (builder) => {
+    extraReducers: builder => {
         builder
-            .addCase(fetchCandlesInCart.pending, (state) => {
+            .addCase(fetchCandlesInCart.pending, state => {
                 state.items = [];
             })
             .addCase(fetchCandlesInCart.fulfilled, (state, action) => {
@@ -57,9 +57,8 @@ const cartSlice = createSlice({
                 state.items = action.payload.candlesWithAmount;
                 state.count = action.payload.totalCount;
                 state.totalPrice = action.payload.totalPrice;
-
             })
-            .addCase(fetchCandlesInCart.rejected, (state) => {
+            .addCase(fetchCandlesInCart.rejected, state => {
                 state.items = [];
             })
             .addCase(addCandle.fulfilled, (state, action) => {
@@ -87,7 +86,7 @@ const cartSlice = createSlice({
                 const nextUrl = action.payload.url;
                 window.location.href = nextUrl;
             })
-            .addCase(clearCart.fulfilled, (state) => {
+            .addCase(clearCart.fulfilled, state => {
                 state.items = [];
                 state.count = 0;
                 state.totalPrice = 0;
