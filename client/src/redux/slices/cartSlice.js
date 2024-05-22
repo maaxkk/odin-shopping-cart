@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const initialState = {
     count: 0,
@@ -10,7 +9,7 @@ const initialState = {
 
 export const fetchCandlesInCart = createAsyncThunk('cart/fetchCartCandles', async userId => {
     const response = await axios.get('api/cart/summary', { params: { userId } });
-    // console.log(response.data);
+    console.log(response);
     return response.data;
 });
 

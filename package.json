@@ -8,5 +8,8 @@
     "server": "cd server && npm run dev",
     "prettier:s": "cd server && npm run prettier",
     "prettier:c": "cd client && npm run prettier"
+  },
+  "dependencies": {
+    "yup": "^1.4.0"
   }
 }

@@ -18,10 +18,6 @@ function CandleItem({ title, imgSrc, category, price, id }) {
         );
     }
 
-    function ToDo() {
-        console.log('Will be done soon :) ');
-    }
-
     function handleAddCandle() {
         if (!isAuth) {
             return alert('Please login first');

@@ -10,11 +10,9 @@ import { jwtDecode } from 'jwt-decode';
 
 function AppRouter() {
     const isAuth = useSelector(state => state.auth.isAuth);
-    const cart = useSelector(state => state.cart);
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
-        // setTimeout(() => {
         check()
             .then(data => {
                 let userToken = localStorage.getItem('token');
@@ -27,7 +25,6 @@ function AppRouter() {
                 console.log(e.response.data.message);
             })
             .finally(() => setIsLoading(false));
-        // }, 1000);
     }, [isAuth]);
 
     if (isLoading) {
