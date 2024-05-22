@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const CandleService = require('../service/CandleService')
+const CandleService = require('../service/CandleService');
 const { validationResult } = require('express-validator');
 
 class CandleController {
@@ -10,11 +10,11 @@ class CandleController {
         }
         try {
             const { title, categoryId, price, amount } = req.body;
-            const candle = await CandleService.create(title, price, amount, categoryId)
+            const candle = await CandleService.create(title, price, amount, categoryId);
             // console.log(candle, 'here');
-            return res.json(candle)
+            return res.json(candle);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -23,7 +23,7 @@ class CandleController {
             const candles = await CandleService.getAll();
             return res.json(candles);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -33,13 +33,12 @@ class CandleController {
             return next(ApiError.badRequest(errors.array()[0].msg));
         }
         try {
-            const {id} = req.params;
-            const candle = await CandleService.getById(id)
-            return res.json(candle)
+            const { id } = req.params;
+            const candle = await CandleService.getById(id);
+            return res.json(candle);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
-
     }
 }
 

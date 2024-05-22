@@ -13,7 +13,7 @@ class CartController {
             const candle = await CartService.add(candleId, userId);
             return res.json(candle);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -27,7 +27,7 @@ class CartController {
             const candle = await CartService.remove(candleId, userId);
             return res.json(candle);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -38,10 +38,10 @@ class CartController {
         }
         try {
             const { userId } = req.query;
-            const {candlesWithAmount, totalCount, totalPrice} =  await CartService.summary(userId);
-            return res.json({candlesWithAmount, totalCount, totalPrice})
+            const { candlesWithAmount, totalCount, totalPrice } = await CartService.summary(userId);
+            return res.json({ candlesWithAmount, totalCount, totalPrice });
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -54,7 +54,7 @@ class CartController {
             const { userId } = req.body;
             await CartService.clear(userId);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -68,7 +68,7 @@ class CartController {
             const sessionURL = await CartService.checkout(userId);
             return res.json(sessionURL);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 
@@ -81,7 +81,7 @@ class CartController {
             const candlesInCart = await CartService.getAll();
             return res.json(candlesInCart);
         } catch (e) {
-            return next(ApiError.badRequest(e.message))
+            return next(ApiError.badRequest(e.message));
         }
     }
 }

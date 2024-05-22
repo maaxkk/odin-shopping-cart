@@ -35,7 +35,7 @@ class UserController {
     async getAll(req, res, next) {
         try {
             const users = await UserService.getAll();
-            return res.json(users)
+            return res.json(users);
         } catch (e) {
             return next(ApiError.badRequest(e.message));
         }
@@ -43,9 +43,9 @@ class UserController {
 
     async check(req, res, next) {
         try {
-            const {id, email, role} = req.user;
-            const token = await UserService.check(id, email, role)
-            return res.json(token)
+            const { id, email, role } = req.user;
+            const token = await UserService.check(id, email, role);
+            return res.json(token);
         } catch (e) {
             return next(ApiError.badRequest(e.message));
         }
