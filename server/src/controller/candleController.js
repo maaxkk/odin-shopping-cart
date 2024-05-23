@@ -11,7 +11,6 @@ class CandleController {
         try {
             const { title, categoryId, price, amount } = req.body;
             const candle = await CandleService.create(title, price, amount, categoryId);
-            // console.log(candle, 'here');
             return res.json(candle);
         } catch (e) {
             return next(ApiError.badRequest(e.message));

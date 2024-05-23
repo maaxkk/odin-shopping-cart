@@ -2,7 +2,7 @@ const sequelize = require('../db');
 const { DataTypes } = require('sequelize');
 
 const User = sequelize.define('user', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.UUID, primaryKey: true, defaultValue: DataTypes.UUIDV4 },
     fullName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING, unique: true },
     password: { type: DataTypes.STRING },
@@ -10,20 +10,20 @@ const User = sequelize.define('user', {
 });
 
 const CartItem = sequelize.define('cartItem', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    userId: { type: DataTypes.INTEGER },
-    candleId: { type: DataTypes.INTEGER },
+    id: { type: DataTypes.UUID, primaryKey: true, defaultValue: DataTypes.UUIDV4 },
+    userId: { type: DataTypes.UUID },
+    candleId: { type: DataTypes.UUID },
     amount: { type: DataTypes.INTEGER },
 });
 
 const Category = sequelize.define('category', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.UUID, primaryKey: true, defaultValue: DataTypes.UUIDV4 },
     title: { type: DataTypes.STRING },
 });
 
 const Candle = sequelize.define('candle', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    categoryId: { type: DataTypes.INTEGER, references: { model: Category, key: 'id' } },
+    id: { type: DataTypes.UUID, primaryKey: true, defaultValue: DataTypes.UUIDV4 },
+    categoryId: { type: DataTypes.UUID, references: { model: Category, key: 'id' } },
     title: { type: DataTypes.STRING },
     price: { type: DataTypes.INTEGER },
     imgSrc: { type: DataTypes.STRING, defaultValue: 'https://i.imgur.com/FBaxKY1.jpg' },

@@ -18,6 +18,7 @@ export const login = async (email, password) => {
         email,
         password,
     });
+    document.cookie = `token=${data}`
     localStorage.setItem('token', data);
     return jwtDecode(data);
 };

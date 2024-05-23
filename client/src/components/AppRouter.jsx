@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Route, Routes} from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar.jsx';
-import { privateRoutes, publicRoutes } from '../router/router.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { check } from '../API/userAPI.js';
-import { setAuth, setUserId } from '../redux/slices/authSlice.js';
-import { fetchCandlesInCart } from '../redux/slices/cartSlice.js';
-import { jwtDecode } from 'jwt-decode';
+import {privateRoutes, publicRoutes} from '../router/router.js';
+import {useDispatch, useSelector} from 'react-redux';
+import {check} from '../API/userAPI.js';
+import {setAuth, setUserId} from '../redux/slices/authSlice.js';
+import {fetchCandlesInCart} from '../redux/slices/cartSlice.js';
+import {jwtDecode} from 'jwt-decode';
 
 function AppRouter() {
     const isAuth = useSelector(state => state.auth.isAuth);

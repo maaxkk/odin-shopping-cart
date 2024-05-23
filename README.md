@@ -1,14 +1,12 @@
 ## Todo:
 - [ ] Check /api/user/auth (why it's GET) 
 - [ ] Save in cookies token
-- [ ] Dependency from package lock json
+- [x] Dependency from package lock json
 - [ ] Migrate database separately
-- [ ] No autoincrement
-- [ ] Validate input
-- [ ] Write service
-- [ ] Delete with DELETE request, and return 200
-- [ ] Summary NO NEED IN BACKEND!
+- [x] No autoincrement
+- [x] Validate input
+- [x] Delete with DELETE request
 - [ ] Read about ReadableStream
 - [ ] Fix controllers with service
-- [ ] Read about REST
+- [ ] follow REST
 - [ ] UserDTO

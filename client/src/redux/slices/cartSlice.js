@@ -9,7 +9,6 @@ const initialState = {
 
 export const fetchCandlesInCart = createAsyncThunk('cart/fetchCartCandles', async userId => {
     const response = await axios.get('api/cart/summary', { params: { userId } });
-    console.log(response);
     return response.data;
 });
 
@@ -27,13 +26,12 @@ export const removeCandle = createAsyncThunk('cart/remove', async params => {
 
 export const checkout = createAsyncThunk('cart/checkout', async userId => {
     const response = await axios.post('api/cart/checkout', { userId });
-    console.log(response);
     return response.data;
 });
 
 export const clearCart = createAsyncThunk('cart/clear', async userId => {
-    const response = await axios.post('api/cart/clear', { userId });
-    return response;
+    const response = await axios.delete('api/cart/clear/', { params: { userId } });
+    return response.data;
 });
 
 const cartSlice = createSlice({
@@ -85,10 +83,10 @@ const cartSlice = createSlice({
                 const nextUrl = action.payload.url;
                 window.location.href = nextUrl;
             })
-            .addCase(clearCart.fulfilled, state => {
-                state.items = [];
-                state.count = 0;
-                state.totalPrice = 0;
+            .addCase(clearCart.fulfilled, (state, action) => {
+                state.items = action.payload.items;
+                state.count = action.payload.count;
+                state.totalPrice = action.payload.totalPrice;
             });
     },
 });

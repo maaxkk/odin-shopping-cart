@@ -51,8 +51,9 @@ class CartController {
             return next(ApiError.badRequest(errors.array()[0].msg));
         }
         try {
-            const { userId } = req.body;
+            const { userId } = req.query;
             await CartService.clear(userId);
+            return res.json({ items: [], count: 0, totalPrice: 0 });
         } catch (e) {
             return next(ApiError.badRequest(e.message));
         }

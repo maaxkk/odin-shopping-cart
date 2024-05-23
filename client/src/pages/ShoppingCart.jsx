@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from '../styles/ShoppingCart.module.css';
 
 import CartItem from '../components/UI/CartItem/CartItem.jsx';
-import { FaShoppingCart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkout, clearCart } from '../redux/slices/cartSlice.js';
+import {FaShoppingCart} from 'react-icons/fa';
+import {useDispatch, useSelector} from 'react-redux';
+import {checkout, clearCart} from '../redux/slices/cartSlice.js';
 import EmptyCart from '../components/UI/EmptyCart/EmptyCart.jsx';
 import NoAccess from './NoAccess.jsx';
-import { IoIosArrowBack } from 'react-icons/io';
+import {IoIosArrowBack} from 'react-icons/io';
+import {Link} from 'react-router-dom';
 
 function ShoppingCart() {
     const cart = useSelector(state => state.cart);
@@ -19,7 +20,6 @@ function ShoppingCart() {
     }
 
     function clearCartHandler() {
-        console.log(user);
         dispatch(clearCart(user.userId));
     }
 
@@ -64,10 +64,12 @@ function ShoppingCart() {
                             </p>
                         </div>
                         <div className={classes.totalWrapper}>
-                            <button className={classes.goBack}>
-                                <IoIosArrowBack />
-                                Back
-                            </button>
+                            <Link to={'/'}>
+                                <button className={classes.goBack}>
+                                    <IoIosArrowBack />
+                                    Back
+                                </button>
+                            </Link>
                             <button onClick={checkoutHandle} className={classes.payNow}>
                                 Pay now
                             </button>
